@@ -1,0 +1,28 @@
+import ripe_md160
+import hashlib
+import os
+
+def testRipeMD1601 ():
+    test_text = os.urandom(32)
+    print(test_text)
+    m = hashlib.new('ripemd160')
+    m.update(test_text)
+    m = m.hexdigest()
+    
+    assert m == ripe_md160.hash_in_hex(ripe_md160.ripemd160(test_text))
+
+def testRipeMD1602 ():
+    test_text = os.urandom(64)
+    m = hashlib.new('ripemd160')
+    m.update(test_text)
+    m = m.hexdigest()
+    
+    assert m == ripe_md160.hash_in_hex(ripe_md160)
+
+def testRipeMD1603 ():
+    test_text = os.urandom(200)
+    m = hashlib.new('ripemd160')
+    m.update(test_text)
+    m = m.hexdigest()
+    
+    assert m == ripe_md160.hash_in_hex(ripe_md160.ripemd160(test_text))
